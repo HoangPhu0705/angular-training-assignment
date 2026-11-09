@@ -1,0 +1,81 @@
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--f1-slate);
+  font-size: 0.75rem;
+  text-decoration: none;
+}
+
+.back-link span {
+  font-size: 1.25rem;
+  line-height: 0.5;
+  transform: translateY(-1px);
+}
+
+.back-link:focus-visible {
+  outline: 3px solid var(--nt-focus);
+  outline-offset: 3px;
+}
+
+.title-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+h1 {
+  margin: 10px 0 4px;
+  color: var(--f1-charcoal);
+  font-size: clamp(1.5rem, 3vw, 1.75rem);
+  line-height: 1.2;
+}
+
+.subtitle {
+  margin: 0;
+  color: var(--f1-slate);
+  font-size: 0.875rem;
+}
+
+.jar-list {
+  display: grid;
+  gap: 12px;
+  max-width: 820px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* Same height as a real row so the page doesn't jump when data arrives. */
+.skeleton-row {
+  height: 92px;
+  border-radius: 8px;
+  background: linear-gradient(90deg, var(--f1-grey) 0%, var(--f1-bg) 50%, var(--f1-grey) 100%);
+  background-size: 200% 100%;
+  opacity: 0.6;
+  animation: shimmer 1.4s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  from {
+    background-position: 100% 0;
+  }
+
+  to {
+    background-position: -100% 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skeleton-row {
+    animation: none;
+  }
+}
+
+.state {
+  display: block;
+  max-width: 820px;
+}

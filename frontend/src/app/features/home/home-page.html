@@ -1,0 +1,22 @@
+<app-page-shell activeItem="home">
+  <h1>Family finance</h1>
+  <p class="intro">Choose a month to view its plan, add an expense or review spending.</p>
+
+  <label for="home-month" class="month-label">Month</label>
+  <input id="home-month" type="month" [value]="month()" (input)="onMonthInput($event)" />
+
+  @if (period(); as p) {
+    <nav class="month-actions" [attr.aria-label]="'Actions for ' + periodLabel()">
+      <a class="primary-link" [routerLink]="['/monthly-plans', p.year, p.month]">View allocation</a>
+      <a class="secondary-link" [routerLink]="['/monthly-plans', p.year, p.month, 'spending']">Spending by jar</a>
+      <a class="secondary-link" routerLink="/expenses/new" [queryParams]="{ expenseDate: firstDay() }">Add expense</a>
+    </nav>
+  } @else {
+    <p class="hint">Select a month to continue.</p>
+  }
+
+  <p class="hint">
+    No plan yet?
+    <a routerLink="/monthly-planning">Create a monthly plan</a>
+  </p>
+</app-page-shell>

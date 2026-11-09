@@ -1,0 +1,25 @@
+:host {
+  display: block;
+  min-height: 100dvh;
+  color: var(--f1-charcoal);
+  background: var(--f1-bg);
+}
+
+.shell {
+  display: flex;
+  width: min(1440px, 100%);
+  min-height: calc(100dvh - 60px);
+  margin: 0 auto;
+}
+
+.page-main {
+  flex: 1;
+  min-width: 0;
+  padding: 16px 28px 48px;
+}
+
+@media (max-width: 760px) {
+  .page-main {
+    padding: 18px 16px 38px;
+  }
+}

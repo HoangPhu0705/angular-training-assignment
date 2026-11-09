@@ -1,0 +1,374 @@
+.breadcrumbs,
+.intro,
+.content-grid {
+  width: min(1148px, 100% - 48px);
+  margin-inline: auto;
+}
+
+.breadcrumbs {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 8px;
+  color: var(--f1-slate);
+  font-size: var(--f1-label);
+  line-height: 1.4;
+}
+
+.breadcrumbs a {
+  display: inline-flex;
+  color: inherit;
+  text-decoration: none;
+}
+
+.breadcrumbs a:focus-visible {
+  outline: 3px solid var(--nt-focus);
+  outline-offset: 3px;
+}
+
+.breadcrumbs svg {
+  width: 18px;
+  height: 18px;
+}
+
+.intro {
+  display: flex;
+  align-items: flex-start;
+  gap: 19px;
+  margin-top: 36px;
+  margin-bottom: 26px;
+}
+
+.intro-icon {
+  display: grid;
+  width: 56px;
+  height: 56px;
+  flex: 0 0 auto;
+  place-items: center;
+  border-radius: 18px;
+  color: var(--f1-green);
+  background: var(--f1-green-tint);
+}
+
+.intro-icon svg {
+  width: 28px;
+  height: 28px;
+}
+
+h1,
+h2 {
+  margin: 0;
+  color: var(--f1-navy);
+}
+
+h1 {
+  font-size: 1.75rem;
+  line-height: 1.22;
+  font-weight: 700;
+}
+
+h2 {
+  font-size: 1.25rem;
+  line-height: 1.4;
+}
+
+.intro-copy {
+  margin: 3px 0 0;
+  color: var(--f1-slate);
+  font-size: var(--f1-body);
+  line-height: 1.5;
+}
+
+.eyebrow {
+  margin: 0 0 3px;
+  color: var(--f1-red);
+  font-size: var(--f1-label);
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.content-grid {
+  display: grid;
+  grid-template-columns: minmax(360px, 459px) minmax(0, 1fr);
+  align-items: start;
+  gap: 19px;
+  padding-bottom: 48px;
+}
+
+.panel {
+  min-width: 0;
+  padding: 23px 27px 24px;
+  border: 1px solid var(--f1-grey);
+  border-radius: 8px;
+  background: var(--f1-surface);
+}
+
+.details-panel,
+.allocation-panel {
+  min-height: 446px;
+}
+
+.field {
+  margin-top: 25px;
+}
+
+.field + .field {
+  margin-top: 24px;
+}
+
+label {
+  display: block;
+  margin-bottom: 7px;
+  font-size: var(--f1-small);
+  line-height: 1.4;
+  font-weight: 700;
+}
+
+.required {
+  color: var(--f1-red);
+}
+
+.control {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 46px;
+  padding: 0 13px;
+  border: 1px solid var(--f1-grey);
+  border-radius: 7px;
+  color: var(--f1-slate);
+  background: var(--f1-surface);
+}
+
+.control:focus-within {
+  outline: 3px solid var(--nt-focus);
+  outline-offset: 1px;
+}
+
+.control:has([aria-invalid='true']) {
+  border-color: var(--f1-error);
+}
+
+.control-icon {
+  display: grid;
+  width: 21px;
+  height: 21px;
+  flex: 0 0 auto;
+  place-items: center;
+}
+
+.control-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+input {
+  width: 100%;
+  min-width: 0;
+  min-height: 42px;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  color: var(--f1-charcoal);
+  background: transparent;
+  font: inherit;
+  font-size: var(--f1-body);
+}
+
+.currency-suffix {
+  flex: 0 0 auto;
+  color: var(--f1-slate);
+  font-size: var(--f1-small);
+  font-weight: 600;
+}
+
+.field-error,
+.field-hint {
+  min-height: 1.4em;
+  margin: 7px 0 0;
+  font-size: var(--f1-label);
+  line-height: 1.4;
+}
+
+.field-error {
+  color: var(--f1-error);
+}
+
+.field-hint {
+  color: var(--f1-slate);
+}
+
+.form-divider {
+  height: 1px;
+  margin: 29px 0 23px;
+  border: 0;
+  background: var(--f1-grey);
+}
+
+.status-message {
+  display: block;
+  margin-bottom: 14px;
+  padding: 10px 12px;
+  border-radius: 6px;
+  color: var(--f1-charcoal);
+  background: #edf5fd;
+  font-size: var(--f1-label);
+  line-height: 1.4;
+}
+
+/* Keep the live region in the DOM so screen readers announce changes, but collapse it when idle. */
+.status-message:empty {
+  margin: 0;
+  padding: 0;
+}
+
+.primary-button {
+  display: inline-flex;
+  width: 100%;
+  min-height: 46px;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  padding: 0 16px;
+  border: 0;
+  border-radius: 7px;
+  color: var(--f1-surface);
+  background: #1976d2;
+  font: inherit;
+  font-size: var(--f1-body);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.primary-button:hover {
+  background: #1268bd;
+}
+
+.primary-button:focus-visible {
+  outline: 3px solid var(--nt-focus);
+  outline-offset: 2px;
+}
+
+.primary-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.75;
+}
+
+.one-plan-note {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  margin: 15px 0 0;
+  color: var(--f1-slate);
+  font-size: var(--f1-label);
+  line-height: 1.4;
+}
+
+.one-plan-note svg {
+  width: 15px;
+  height: 15px;
+  flex: 0 0 auto;
+}
+
+.allocation-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.allocation-copy {
+  margin: 2px 0 24px;
+  color: var(--f1-slate);
+  font-size: var(--f1-small);
+  line-height: 1.4;
+}
+
+.allocation-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  flex: 0 0 auto;
+  padding: 5px 10px;
+  border-radius: 14px;
+  color: var(--f1-green);
+  background: var(--f1-green-tint);
+  font-size: var(--f1-label);
+  line-height: 1.3;
+}
+
+.status-check {
+  display: grid;
+  width: 15px;
+  height: 15px;
+  place-items: center;
+  border-radius: 50%;
+  color: var(--f1-surface);
+  background: var(--f1-green);
+  font-size: 10px;
+}
+
+@media (max-width: 920px) {
+  .breadcrumbs,
+  .intro,
+  .content-grid {
+    width: min(720px, 100% - 40px);
+  }
+
+  .content-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .details-panel,
+  .allocation-panel {
+    min-height: 0;
+  }
+}
+
+@media (max-width: 560px) {
+  .breadcrumbs,
+  .intro,
+  .content-grid {
+    width: calc(100% - 32px);
+  }
+
+  .breadcrumbs {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .intro {
+    gap: 12px;
+    margin-top: 24px;
+    margin-bottom: 20px;
+  }
+
+  .intro-icon {
+    width: 46px;
+    height: 46px;
+    border-radius: 14px;
+  }
+
+  h1 {
+    font-size: 1.4375rem;
+  }
+
+  .intro-copy {
+    font-size: var(--f1-small);
+  }
+
+  .panel {
+    padding: 20px 18px;
+  }
+
+  .allocation-heading {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .allocation-copy {
+    margin-bottom: 17px;
+  }
+}

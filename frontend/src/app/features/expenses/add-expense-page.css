@@ -1,0 +1,229 @@
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--f1-slate);
+  font-size: 0.8125rem;
+  text-decoration: none;
+}
+
+.back-link span {
+  font-size: 1.4rem;
+  line-height: 0.5;
+}
+
+.back-link:focus-visible {
+  outline: 3px solid var(--nt-focus);
+  outline-offset: 3px;
+}
+
+.page-intro {
+  margin: 22px 0 28px;
+}
+
+h1,
+h2 {
+  margin: 0;
+  color: var(--f1-charcoal);
+}
+
+h1 {
+  font-size: clamp(1.5rem, 2.5vw, 1.75rem);
+  line-height: 1.2;
+}
+
+h2 {
+  font-size: 1.25rem;
+  line-height: 1.4;
+}
+
+.page-intro p,
+.panel-copy {
+  margin: 7px 0 0;
+  color: var(--f1-slate);
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+.expense-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 700px) minmax(280px, 419px);
+  gap: 28px;
+  align-items: start;
+}
+
+.details-panel {
+  display: flex;
+  flex-direction: column;
+  padding: 26px;
+  border: 1px solid var(--f1-grey);
+  border-radius: 8px;
+  background: var(--f1-surface);
+}
+
+.details-panel .panel-copy {
+  margin-bottom: 22px;
+}
+
+label {
+  margin: 15px 0 6px;
+  color: var(--f1-charcoal);
+  font-size: 0.875rem;
+  font-weight: 700;
+}
+
+label span[aria-hidden='true'] {
+  color: var(--f1-error);
+}
+
+input,
+select {
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 46px;
+  padding: 0 13px;
+  border: 1px solid var(--f1-grey);
+  border-radius: 7px;
+  color: var(--f1-charcoal);
+  background: var(--f1-surface);
+  font: inherit;
+  font-size: 1rem;
+}
+
+input[aria-invalid='true'],
+select[aria-invalid='true'],
+.amount-control:has([aria-invalid='true']) {
+  border-color: var(--f1-error);
+}
+
+select:disabled {
+  color: var(--f1-slate);
+  background: var(--f1-bg);
+  cursor: not-allowed;
+}
+
+.select-control {
+  position: relative;
+}
+
+.select-control select {
+  appearance: none;
+  padding-right: 44px;
+  cursor: pointer;
+}
+
+.select-chevron {
+  position: absolute;
+  top: 50%;
+  right: 15px;
+  width: 9px;
+  height: 9px;
+  border-right: 1.5px solid var(--f1-slate);
+  border-bottom: 1.5px solid var(--f1-slate);
+  transform: translateY(-65%) rotate(45deg);
+  pointer-events: none;
+}
+
+input:focus,
+select:focus {
+  outline: 3px solid color-mix(in srgb, var(--nt-focus) 40%, transparent);
+  border-color: var(--f1-jar-investment);
+}
+
+.amount-control {
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--f1-grey);
+  border-radius: 7px;
+}
+
+.amount-control input {
+  border: 0;
+}
+
+.amount-control span {
+  padding: 0 13px;
+  color: var(--f1-slate);
+  font-size: 0.8125rem;
+}
+
+.hint,
+.field-error {
+  margin-top: 5px;
+  font-size: 0.8125rem;
+}
+
+.hint {
+  color: var(--f1-slate);
+}
+
+.field-error {
+  color: var(--f1-error);
+}
+
+.plan-state {
+  display: block;
+  margin-top: 12px;
+}
+
+.status {
+  padding: 10px 12px;
+  border-radius: 6px;
+  font-size: 0.8125rem;
+  line-height: 1.5;
+}
+
+/* Keep the live region in the DOM so changes are announced, but collapse it when idle. */
+.status:empty {
+  padding: 0;
+}
+
+.status.error {
+  color: var(--f1-error);
+  background: var(--f1-error-tint);
+}
+
+.status.success {
+  color: var(--f1-charcoal);
+  background: var(--f1-green-tint);
+}
+
+.status a {
+  color: inherit;
+  font-weight: 700;
+}
+
+.save-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  min-height: 46px;
+  padding: 0 20px;
+  margin-top: 22px;
+  border: 0;
+  border-radius: 7px;
+  color: white;
+  background: var(--f1-jar-investment);
+  font: inherit;
+  font-size: 0.875rem;
+  font-weight: 700;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.save-button:focus-visible {
+  outline: 3px solid var(--nt-focus);
+  outline-offset: 2px;
+}
+
+.save-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+@media (max-width: 900px) {
+  .expense-layout {
+    grid-template-columns: 1fr;
+  }
+}

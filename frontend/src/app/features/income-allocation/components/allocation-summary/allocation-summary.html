@@ -1,0 +1,46 @@
+<section aria-labelledby="summary-heading" class="summary">
+  <div class="income">
+    <span aria-hidden="true" class="income-icon">
+      <svg viewBox="0 0 24 24" fill="none">
+        <path
+          d="M12 2.8v18.4M17 6.2c-.9-1-2.4-1.6-4.5-1.6-2.4 0-4 1.1-4 2.8 0 4.6 9.5 1.5 9.5 6.7 0 2-1.9 3.5-4.9 3.5-2 0-3.7-.6-5-1.8"
+          stroke="currentColor"
+          stroke-width="1.8"
+          stroke-linecap="round" />
+      </svg>
+    </span>
+    <h2 id="summary-heading" class="income-label">Total monthly income</h2>
+    <p class="income-value">{{ plan().monthlyIncomeVnd | vnd }}</p>
+    <p class="income-meta">Monthly plan for {{ periodLabel() }}</p>
+  </div>
+
+  <div class="allocation">
+    <div role="img" class="donut" [attr.aria-label]="donutLabel()" [style.background]="donut()">
+      <div aria-hidden="true" class="donut-label"><strong>100%</strong><span>allocated</span></div>
+    </div>
+    <ul aria-label="Jar allocation legend" class="legend">
+      @for (jar of plan().jars; track jar.jarType) {
+        <li class="legend-item">
+          <span class="legend-name" [class]="jarTheme[jar.jarType].cssClass">{{ jar.name }}</span>
+          <span class="legend-rate">{{ jar.percentage }}%</span>
+        </li>
+      }
+    </ul>
+  </div>
+</section>
+
+<section aria-labelledby="jars-heading">
+  <h2 id="jars-heading" class="section-title">The Seven Jars</h2>
+  <p class="section-copy">Your income is allocated to 7 jars based on the default rates.</p>
+  <ul aria-label="Jar budgets" class="jar-grid">
+    @for (jar of plan().jars; track jar.jarType) {
+      <li>
+        <app-jar-card
+          [jarType]="jar.jarType"
+          [name]="jar.name"
+          [percentage]="jar.percentage"
+          [budgetVnd]="jar.budgetVnd" />
+      </li>
+    }
+  </ul>
+</section>

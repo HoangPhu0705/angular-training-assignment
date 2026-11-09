@@ -1,0 +1,31 @@
+h1 {
+  margin: 10px 0 7px;
+  font-size: clamp(1.5rem, 3vw, 1.75rem);
+}
+
+.intro,
+.hint {
+  color: var(--f1-slate);
+}
+
+.month-label {
+  display: block;
+  margin: 18px 0 6px;
+  font-size: 0.875rem;
+  font-weight: 700;
+}
+
+input[type='month'] {
+  min-height: 40px;
+  padding: 0 10px;
+  border: 1px solid var(--f1-grey);
+  border-radius: 7px;
+  font: inherit;
+}
+
+.month-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 18px 0;
+}

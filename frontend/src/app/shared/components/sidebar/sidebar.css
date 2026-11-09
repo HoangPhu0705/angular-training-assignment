@@ -1,0 +1,50 @@
+:host {
+  display: block;
+  flex: 0 0 176px;
+}
+
+.sidebar {
+  width: 176px;
+  height: 100%;
+  box-sizing: border-box;
+  padding: 16px 8px;
+  border-right: 1px solid var(--f1-grey);
+  background: var(--f1-surface);
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  height: 38px;
+  padding: 0 19px;
+  margin-bottom: 9px;
+  border-radius: 6px;
+  color: var(--f1-slate);
+  font-size: 0.75rem;
+  text-decoration: none;
+}
+
+.nav-item.active {
+  color: var(--f1-jar-investment);
+  background: var(--f1-lavender);
+}
+
+.nav-icon {
+  display: inline-grid;
+  width: 17px;
+  height: 17px;
+  place-items: center;
+  color: var(--f1-slate);
+}
+
+.nav-icon svg {
+  width: 17px;
+  height: 17px;
+}
+
+@media (max-width: 760px) {
+  :host {
+    display: none;
+  }
+}

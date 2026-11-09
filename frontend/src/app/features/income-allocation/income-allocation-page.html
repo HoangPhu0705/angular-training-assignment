@@ -1,0 +1,43 @@
+@let s = state();
+<app-page-shell activeItem="planning">
+  <section aria-labelledby="plan-title">
+    <a routerLink="/monthly-planning" class="back-link"><span aria-hidden="true">‹</span> Back to monthly planning</a>
+
+    <div class="title-row">
+      <div>
+        <h1 id="plan-title">Month Budget Summary</h1>
+        <label for="plan-month" class="month-label">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <rect x="3.5" y="5" width="17" height="15.5" rx="2" stroke="currentColor" stroke-width="1.8" />
+            <path d="M7.5 3v4M16.5 3v4M4 9.5h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+          </svg>
+          <span class="sr-only">Month</span>
+          <select id="plan-month" (change)="onMonthChange($event)">
+            @for (option of monthOptions(); track option.value) {
+              <option [value]="option.value" [selected]="option.value === period().month">{{ option.label }}</option>
+            }
+          </select>
+        </label>
+      </div>
+
+      @if (s.status === 'success') {
+        <nav class="plan-actions" aria-label="Plan actions">
+          <a class="secondary-link" routerLink="/expenses/new" [queryParams]="{ expenseDate: firstDay() }">Add expense</a>
+          <a class="primary-link" [routerLink]="['/monthly-plans', period().year, period().month, 'spending']">
+            View spending
+          </a>
+        </nav>
+      }
+    </div>
+
+    @if (s.status === 'loading') {
+      <app-loading-state message="Loading monthly plan…" />
+    } @else if (s.status === 'success') {
+      <app-allocation-summary [plan]="s.data" />
+    } @else if (s.failure.kind === 'notFound') {
+      <app-missing-plan-state [period]="period()" />
+    } @else {
+      <app-error-state title="Couldn’t load this plan" (retry)="retry()" />
+    }
+  </section>
+</app-page-shell>

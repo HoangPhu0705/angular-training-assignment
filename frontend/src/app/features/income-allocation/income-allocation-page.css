@@ -1,0 +1,76 @@
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--f1-slate);
+  font-size: 0.75rem;
+  text-decoration: none;
+}
+
+.back-link span {
+  font-size: 1.25rem;
+  line-height: 0.5;
+  transform: translateY(-1px);
+}
+
+.back-link:focus-visible {
+  outline: 3px solid var(--nt-focus);
+  outline-offset: 3px;
+}
+
+.title-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+h1 {
+  margin: 10px 0 7px;
+  color: var(--f1-charcoal);
+  font-size: clamp(1.5rem, 3vw, 1.75rem);
+  line-height: 1.2;
+}
+
+.month-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0;
+  color: var(--f1-charcoal);
+  font-size: 0.875rem;
+}
+
+.month-label svg {
+  width: 18px;
+  height: 18px;
+  flex: 0 0 18px;
+}
+
+.month-label select {
+  min-width: 170px;
+  padding: 5px 28px 5px 4px;
+  border: 0;
+  color: inherit;
+  background: var(--f1-bg);
+  font: inherit;
+  cursor: pointer;
+}
+
+.month-label select:focus-visible {
+  outline: 3px solid var(--nt-focus);
+  outline-offset: 2px;
+}
+
+.plan-actions {
+  display: flex;
+  gap: 10px;
+}
+
+app-missing-plan-state,
+app-error-state,
+app-loading-state {
+  display: block;
+  margin-top: 18px;
+}

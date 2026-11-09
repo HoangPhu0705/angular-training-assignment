@@ -1,0 +1,146 @@
+// ── Family Finance shared primitives ──────────────────────────
+
+// A jar class gives its children var(--jar-color), --jar-tint and --jar-icon-tint.
+.jar-living {
+  --jar-color: var(--f1-jar-living);
+  --jar-tint: var(--f1-jar-living-tint);
+  --jar-icon-tint: #ffdfe3;
+}
+
+.jar-food {
+  --jar-color: var(--f1-jar-food);
+  --jar-tint: var(--f1-jar-food-tint);
+  --jar-icon-tint: #ffedc9;
+}
+
+.jar-children {
+  --jar-color: var(--f1-jar-children);
+  --jar-tint: var(--f1-jar-children-tint);
+  --jar-icon-tint: #e8ddff;
+}
+
+.jar-emergency {
+  --jar-color: var(--f1-jar-emergency);
+  --jar-tint: var(--f1-jar-emergency-tint);
+  --jar-icon-tint: #d5f4e9;
+}
+
+.jar-savings {
+  --jar-color: var(--f1-jar-savings);
+  --jar-tint: var(--f1-jar-savings-tint);
+  --jar-icon-tint: #d5f4e9;
+}
+
+.jar-investment {
+  --jar-color: var(--f1-jar-investment);
+  --jar-tint: var(--f1-jar-investment-tint);
+  --jar-icon-tint: #d9ebff;
+}
+
+.jar-travel {
+  --jar-color: var(--f1-jar-travel);
+  --jar-tint: var(--f1-jar-travel-tint);
+  --jar-icon-tint: #e8ddff;
+}
+
+.state-panel {
+  display: grid;
+  justify-items: center;
+  gap: 12px;
+  width: min(560px, 100% - 48px);
+  margin: 96px auto;
+  padding: 36px 24px;
+  border: 1px solid var(--f1-grey);
+  border-radius: 8px;
+  text-align: center;
+  background: var(--f1-surface);
+
+  h1,
+  h2 {
+    margin: 0;
+    color: var(--f1-charcoal);
+    font-size: 1.25rem;
+  }
+
+  p {
+    margin: 0;
+    color: var(--f1-slate);
+  }
+}
+
+.state-icon {
+  display: grid;
+  width: 48px;
+  height: 48px;
+  place-items: center;
+  border-radius: 50%;
+  color: var(--f1-error);
+  background: var(--f1-error-tint);
+  font-size: 1.5rem;
+  font-weight: 800;
+}
+
+.state-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 7px;
+}
+
+.primary-link {
+  min-height: 42px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 15px;
+  border: 0;
+  border-radius: 6px;
+  color: var(--f1-surface);
+  background: var(--f1-red);
+  font: inherit;
+  font-weight: 800;
+  text-decoration: none;
+  cursor: pointer;
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}
+
+.secondary-link {
+  min-height: 42px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 15px;
+  border: 1px solid var(--f1-grey);
+  border-radius: 6px;
+  color: var(--f1-charcoal);
+  background: var(--f1-surface);
+  font: inherit;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--f1-slate);
+  font-size: 0.6875rem;
+  text-decoration: none;
+
+  span {
+    font-size: 1.25rem;
+    line-height: 0.5;
+    transform: translateY(-1px);
+  }
+}
+
+:focus-visible {
+  outline: 2px solid var(--nt-focus);
+  outline-offset: 2px;
+}

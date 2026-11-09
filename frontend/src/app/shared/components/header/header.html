@@ -1,0 +1,30 @@
+<header class="page-header">
+  <a routerLink="/monthly-planning" aria-label="Family Finance home" class="brand">
+    <span aria-hidden="true" class="brand-mark">
+      <svg viewBox="0 0 24 24" fill="none">
+        <path
+          d="M4 5.5h16v13H4zM8 3v5m8-5v5M4 10h16"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round" />
+        <path
+          d="m8 14 2.3 2.3L16 11"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round" />
+      </svg>
+    </span>
+    <span>Family Finance</span>
+  </a>
+  @if (context(); as label) {
+    <span class="header-context">{{ label }}</span>
+  }
+  <span class="header-spacer"></span>
+  <!-- No auth, so no account menu. -->
+  <div class="account">
+    <span class="user-name">Family Name</span>
+    <span aria-hidden="true" class="avatar">FN</span>
+  </div>
+</header>

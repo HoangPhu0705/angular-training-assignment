@@ -1,0 +1,69 @@
+:host {
+  display: block;
+}
+
+.jar-card {
+  position: relative;
+  height: 100%;
+  min-height: 153px;
+  overflow: hidden;
+  box-sizing: border-box;
+  padding: 24px 16px 16px;
+  border: 1px solid var(--f1-grey);
+  border-radius: 6px;
+  background: var(--jar-tint);
+}
+
+.jar-card::before {
+  position: absolute;
+  inset: 0 0 auto;
+  height: 4px;
+  background: var(--jar-color);
+  content: '';
+}
+
+.jar-icon {
+  width: 36px;
+  height: 36px;
+  margin-bottom: 7px;
+  border-radius: 50%;
+  color: var(--jar-color);
+  background: var(--jar-icon-tint);
+}
+
+.jar-name {
+  min-height: 18px;
+  margin: 0;
+  font-size: 0.875rem;
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+
+.jar-rate {
+  margin: 2px 0 0;
+  color: var(--jar-color);
+  font-size: 1.625rem;
+  line-height: 30px;
+  font-weight: 700;
+}
+
+.jar-amount {
+  margin: 1px 0 0;
+  color: var(--f1-slate);
+  font-size: 0.75rem;
+}
+
+.meter {
+  height: 6px;
+  overflow: hidden;
+  margin-top: 13px;
+  border-radius: 3px;
+  background: var(--f1-grey);
+}
+
+.meter span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: var(--jar-color);
+}

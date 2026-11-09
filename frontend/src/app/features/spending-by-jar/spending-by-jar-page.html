@@ -1,0 +1,39 @@
+@let s = state();
+@let p = period();
+<app-page-shell activeItem="planning">
+  <section aria-labelledby="spending-title">
+    <a class="back-link" [routerLink]="['/monthly-plans', p.year, p.month]">
+      <span aria-hidden="true">‹</span>
+      Back to {{ periodLabel() }} plan
+    </a>
+
+    <div class="title-row">
+      <div>
+        <h1 id="spending-title">Spending by jar</h1>
+        <p class="subtitle">{{ periodLabel() }} · VND</p>
+      </div>
+      @if (s.status === 'success') {
+        <a class="primary-link" routerLink="/expenses/new" [queryParams]="{ expenseDate: firstDay() }">Add expense</a>
+      }
+    </div>
+
+    @if (s.status === 'loading') {
+      <p role="status" class="sr-only">Loading spending…</p>
+      <ul class="jar-list" aria-hidden="true">
+        @for (row of skeletonRows; track row) {
+          <li class="skeleton-row"></li>
+        }
+      </ul>
+    } @else if (s.status === 'success') {
+      <ul class="jar-list" [attr.aria-label]="'Spending by jar for ' + periodLabel()">
+        @for (jar of s.data.jars; track jar.jarType) {
+          <li><app-spending-row [jar]="jar" /></li>
+        }
+      </ul>
+    } @else if (s.failure.kind === 'notFound') {
+      <app-missing-plan-state class="state" [period]="p" />
+    } @else {
+      <app-error-state class="state" title="Couldn’t load spending" (retry)="retry()" />
+    }
+  </section>
+</app-page-shell>

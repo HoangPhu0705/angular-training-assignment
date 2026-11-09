@@ -1,0 +1,47 @@
+<aside aria-labelledby="selected-jar-title" class="summary-panel">
+  <h2 id="selected-jar-title">Selected jar</h2>
+  <p class="panel-copy">Assigned to this expense</p>
+
+  @if (jar(); as jar) {
+    <div class="jar-summary" [class]="themeClass()">
+      <app-jar-icon class="jar-icon" [jarType]="jar.jarType" />
+      <div>
+        <strong>{{ jar.name }}</strong>
+        <span>{{ jar.percentage }}% of monthly income</span>
+      </div>
+    </div>
+
+    @if (summary(); as summary) {
+      <dl class="figures">
+        <div>
+          <dt>Budget</dt>
+          <dd>{{ summary.budgetVnd | vnd }}</dd>
+        </div>
+        <div>
+          <dt>Spent</dt>
+          <dd>{{ summary.spentVnd | vnd }}</dd>
+        </div>
+        <div class="remaining" [class.over-budget]="overBudget()">
+          <dt>{{ overBudget() ? 'Over budget by' : 'Remaining' }}</dt>
+          <dd>{{ (overBudget() ? summary.remainingVnd.slice(1) : summary.remainingVnd) | vnd }}</dd>
+        </div>
+      </dl>
+    } @else {
+      <dl class="figures">
+        <div>
+          <dt>Budget</dt>
+          <dd>{{ jar.budgetVnd | vnd }}</dd>
+        </div>
+      </dl>
+    }
+  } @else {
+    <div class="jar-summary empty">
+      <div>
+        <strong>Select a jar</strong>
+        <span>Choose a jar to assign this expense.</span>
+      </div>
+    </div>
+  }
+
+  <p class="refresh-note">Jar spending totals refresh after the expense is saved.</p>
+</aside>

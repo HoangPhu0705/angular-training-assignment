@@ -1,0 +1,205 @@
+:host {
+  display: block;
+}
+
+h2,
+p,
+ul {
+  margin: 0;
+}
+
+ul {
+  padding: 0;
+  list-style: none;
+}
+
+.summary {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: 18px;
+  align-items: center;
+  min-height: 140px;
+  padding: 20px;
+  margin-top: 18px;
+  border: 1px solid var(--f1-grey);
+  border-radius: 7px;
+  background: var(--f1-surface);
+}
+
+.income {
+  display: grid;
+  grid-template-columns: 38px 1fr;
+  column-gap: 9px;
+  align-items: start;
+  min-height: 98px;
+  padding-right: 18px;
+  border-right: 1px solid var(--f1-grey);
+}
+
+.income-icon {
+  display: grid;
+  width: 38px;
+  height: 38px;
+  place-items: center;
+  border-radius: 50%;
+  color: var(--f1-jar-investment);
+  background: var(--f1-jar-investment-tint);
+}
+
+.income-icon svg {
+  width: 20px;
+  height: 20px;
+}
+
+.income-label {
+  padding-top: 2px;
+  color: var(--f1-charcoal);
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.income-value {
+  grid-column: 2;
+  margin-top: 4px;
+  font-size: 1.3125rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.income-meta {
+  grid-column: 2;
+  margin-top: 13px;
+  color: var(--f1-slate);
+  font-size: 0.75rem;
+}
+
+.allocation {
+  display: grid;
+  grid-template-columns: 190px 1fr;
+  gap: 18px;
+  align-items: center;
+}
+
+.donut {
+  position: relative;
+  display: grid;
+  width: 106px;
+  height: 106px;
+  place-items: center;
+  margin: auto;
+  border-radius: 50%;
+}
+
+.donut::after {
+  position: absolute;
+  width: 78px;
+  height: 78px;
+  border-radius: 50%;
+  background: var(--f1-surface);
+  content: '';
+}
+
+.donut-label {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+}
+
+.donut-label strong,
+.donut-label span {
+  display: block;
+}
+
+.donut-label strong {
+  font-size: 0.75rem;
+}
+
+.donut-label span {
+  margin-top: 3px;
+  font-size: 0.625rem;
+}
+
+.legend {
+  display: grid;
+  grid-template-columns: 1fr 42px;
+  gap: 8px 10px;
+  font-size: 0.75rem;
+}
+
+.legend-item {
+  display: contents;
+}
+
+.legend-name::before {
+  display: inline-block;
+  width: 9px;
+  height: 9px;
+  margin-right: 9px;
+  border-radius: 50%;
+  background: var(--jar-color);
+  content: '';
+}
+
+.legend-rate {
+  font-weight: 600;
+}
+
+.section-title {
+  margin: 34px 0 2px;
+  color: var(--f1-charcoal);
+  font-size: 1.25rem;
+}
+
+.section-copy {
+  color: var(--f1-slate);
+  font-size: 0.75rem;
+}
+
+.jar-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 17px 19px;
+  margin-top: 18px;
+}
+
+@media (max-width: 980px) {
+  .jar-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 760px) {
+  .summary {
+    grid-template-columns: 1fr;
+  }
+
+  .income {
+    min-height: auto;
+    padding: 0 0 18px;
+    border-right: 0;
+    border-bottom: 1px solid var(--f1-grey);
+  }
+
+  .allocation {
+    grid-template-columns: 150px 1fr;
+  }
+
+  .jar-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+}
+
+@media (max-width: 430px) {
+  .allocation {
+    grid-template-columns: 1fr;
+  }
+
+  .donut {
+    margin: 0 auto 4px;
+  }
+
+  .jar-grid {
+    grid-template-columns: 1fr;
+  }
+}

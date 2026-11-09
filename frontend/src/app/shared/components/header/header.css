@@ -1,0 +1,68 @@
+.page-header {
+  min-height: 60px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0 max(28px, (100vw - 1440px) / 2 + 28px);
+  color: var(--f1-surface);
+  background: var(--f1-navy);
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: inherit;
+  font-size: 1.125rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.brand-mark {
+  display: grid;
+  width: 29px;
+  height: 32px;
+  place-items: center;
+  border-radius: 2px;
+  color: #0d927d;
+  background: var(--f1-surface);
+}
+
+.brand-mark svg {
+  width: 19px;
+  height: 19px;
+}
+
+.header-context {
+  margin-left: 4px;
+  color: #c9c8d6;
+  font-size: 0.8125rem;
+}
+
+.header-spacer {
+  flex: 1;
+}
+
+.account {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.user-name {
+  color: var(--f1-surface);
+  font-size: var(--f1-small);
+  font-weight: 600;
+}
+
+.avatar {
+  display: grid;
+  width: 32px;
+  height: 32px;
+  place-items: center;
+  border-radius: 50%;
+  color: var(--f1-surface);
+  background: #f05d63;
+  font-size: 0.75rem;
+  font-weight: 700;
+}

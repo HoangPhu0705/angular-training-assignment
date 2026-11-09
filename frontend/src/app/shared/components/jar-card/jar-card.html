@@ -1,0 +1,10 @@
+<article class="jar-card">
+  <app-jar-icon class="jar-icon" [jarType]="jarType()" />
+  <h3 class="jar-name">{{ name() }}</h3>
+  <p class="jar-rate">{{ percentage() }}%</p>
+  @if (budgetVnd(); as budget) {
+    <p class="jar-amount">{{ budget | vnd }}</p>
+    <!-- Rate accent only, not spending progress. -->
+    <div aria-hidden="true" class="meter"><span [style.width.%]="percentage()"></span></div>
+  }
+</article>

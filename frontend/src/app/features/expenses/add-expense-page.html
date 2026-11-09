@@ -1,0 +1,191 @@
+@let plan = planState();
+@let p = period();
+<app-page-shell activeItem="expenses" context="Expenses">
+  @if (p) {
+    <a class="back-link" [routerLink]="['/monthly-plans', p.year, p.month]">
+      <span aria-hidden="true">‹</span> Back to {{ formatPeriod(p) }} plan
+    </a>
+  } @else {
+    <a class="back-link" routerLink="/dashboard"><span aria-hidden="true">‹</span> Back to home</a>
+  }
+
+  <section aria-labelledby="expense-title" class="page-intro">
+    <h1 id="expense-title">Add an expense</h1>
+    <p>Record a purchase and assign it to the right jar in your monthly plan.</p>
+  </section>
+
+  <div class="expense-layout">
+    <form class="details-panel" [formGroup]="form" (ngSubmit)="submit()" novalidate>
+      <h2>Expense details</h2>
+      <p class="panel-copy">Choose a jar and enter the expense details.</p>
+
+      @let failure = submitError();
+      @let result = saved();
+      <div
+        role="status"
+        aria-live="polite"
+        class="status"
+        [class.success]="result !== null"
+        [class.error]="failure !== null || (submitted() && form.invalid)">
+        @if (result) {
+          Saved {{ result.expense.amountVnd | vnd }} to {{ result.expense.jarName }}.
+          @if (p) {
+            <a [routerLink]="['/monthly-plans', p.year, p.month, 'spending']">View spending for {{ formatPeriod(p) }}</a>
+          }
+        } @else if (failure) {
+          @switch (failure.kind) {
+            @case ('validation') {
+              {{ failure.message }}
+            }
+            @case ('jarNotInPlan') {
+              That jar isn’t in the plan for this month. The jar list has been refreshed; please choose again.
+            }
+            @case ('notFound') {
+              There is no monthly plan for this month any more.
+            }
+            @default {
+              We couldn’t save the expense. Check your connection and try again.
+            }
+          }
+        } @else if (submitted() && form.invalid) {
+          Please complete the required expense details.
+        }
+      </div>
+
+      @let date = form.controls.expenseDate;
+      @let dateInvalid = date.invalid && (date.touched || submitted());
+      <label for="expense-date">Expense date <span aria-hidden="true">*</span><span class="sr-only">(required)</span></label>
+      <input
+        id="expense-date"
+        type="date"
+        formControlName="expenseDate"
+        [attr.aria-invalid]="dateInvalid"
+        [attr.aria-describedby]="dateInvalid ? 'date-error' : null" />
+      @if (dateInvalid) {
+        <small id="date-error" class="field-error">
+          @if (date.hasError('server')) {
+            {{ date.getError('server') }}
+          } @else if (date.hasError('isoDate')) {
+            Enter a valid date.
+          } @else {
+            Select the expense date.
+          }
+        </small>
+      }
+
+      @let jar = form.controls.jarType;
+      @let jarInvalid = jar.enabled && jar.invalid && (jar.touched || submitted());
+      <label for="jar-type">Jar <span aria-hidden="true">*</span><span class="sr-only">(required)</span></label>
+      <div class="select-control">
+        <select
+          id="jar-type"
+          formControlName="jarType"
+          [attr.aria-invalid]="jarInvalid"
+          [attr.aria-describedby]="jarInvalid ? 'jar-error' : 'jar-hint'">
+          <option [ngValue]="null">{{ plan?.status === 'success' ? 'Select a jar' : 'No jars available' }}</option>
+          @for (option of jars(); track option.jarType) {
+            <option [ngValue]="option.jarType">{{ option.name }} · {{ option.percentage }}%</option>
+          }
+        </select>
+        <span aria-hidden="true" class="select-chevron"></span>
+      </div>
+      @if (jarInvalid) {
+        <small id="jar-error" class="field-error">
+          @if (jar.hasError('server')) {
+            {{ jar.getError('server') }}
+          } @else {
+            Please select a jar.
+          }
+        </small>
+      } @else {
+        <small id="jar-hint" class="hint">
+          @if (plan === null) {
+            Choose a date first.
+          } @else if (plan.status === 'loading' && p) {
+            Loading plan for {{ formatPeriod(p) }}…
+          } @else if (plan.status === 'success') {
+            Jars come from the {{ formatPeriod(plan.data) }} plan.
+          }
+        </small>
+      }
+
+      @if (planFailure(); as planError) {
+        @if (planError.kind === 'notFound') {
+          <app-missing-plan-state class="plan-state" [period]="p ?? undefined" />
+        } @else {
+          <app-error-state
+            class="plan-state"
+            title="Couldn’t load the monthly plan"
+            message="The jar list needs the plan for this month. Please try again."
+            (retry)="retryPlan()" />
+        }
+      }
+
+      @let amount = form.controls.amountVnd;
+      @let amountInvalid = amount.invalid && (amount.touched || submitted());
+      <label for="amount">Amount <span aria-hidden="true">*</span><span class="sr-only">(required)</span></label>
+      <div class="amount-control">
+        <input
+          id="amount"
+          type="text"
+          inputmode="numeric"
+          autocomplete="off"
+          placeholder="1,250,000"
+          appDigitsOnly
+          formControlName="amountVnd"
+          [attr.aria-invalid]="amountInvalid"
+          [attr.aria-describedby]="amountInvalid ? 'amount-hint amount-error' : 'amount-hint'" />
+        <span>VND</span>
+      </div>
+      <small id="amount-hint" class="hint">
+        @if (amount.value) {
+          {{ amount.value | vnd }}
+        } @else {
+          Enter a positive whole-VND amount.
+        }
+      </small>
+      @if (amountInvalid) {
+        <small id="amount-error" class="field-error">
+          @if (amount.hasError('server')) {
+            {{ amount.getError('server') }}
+          } @else if (amount.hasError('required')) {
+            Enter the amount.
+          } @else if (amount.hasError('tooLarge')) {
+            Amount is too large.
+          } @else {
+            Amount must be greater than zero.
+          }
+        </small>
+      }
+
+      @let description = form.controls.description;
+      @let descriptionInvalid = description.invalid && (description.touched || submitted());
+      <label for="description">Description <span aria-hidden="true">*</span><span class="sr-only">(required)</span></label>
+      <input
+        id="description"
+        type="text"
+        placeholder="e.g. Weekly groceries"
+        formControlName="description"
+        [attr.maxlength]="descriptionMaxLength"
+        [attr.aria-invalid]="descriptionInvalid"
+        [attr.aria-describedby]="descriptionInvalid ? 'description-error' : null" />
+      @if (descriptionInvalid) {
+        <small id="description-error" class="field-error">
+          @if (description.hasError('server')) {
+            {{ description.getError('server') }}
+          } @else if (description.hasError('maxlength')) {
+            Description must be {{ descriptionMaxLength }} characters or fewer.
+          } @else {
+            Description is required.
+          }
+        </small>
+      }
+
+      <button type="submit" class="save-button" [disabled]="submitting() || plan?.status !== 'success'">
+        <span aria-hidden="true">✓</span>{{ submitting() ? 'Saving…' : 'Save expense' }}
+      </button>
+    </form>
+
+    <app-selected-jar-summary [jar]="selectedJar()" [summary]="savedSummary()" />
+  </div>
+</app-page-shell>

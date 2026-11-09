@@ -1,0 +1,114 @@
+:host {
+  display: block;
+}
+
+.summary-panel {
+  min-height: 360px;
+  padding: 26px;
+  border: 1px solid var(--f1-grey);
+  border-radius: 8px;
+  background: var(--f1-surface);
+}
+
+h2 {
+  margin: 0;
+  color: var(--f1-charcoal);
+  font-size: 1.25rem;
+  line-height: 1.4;
+}
+
+.panel-copy {
+  margin: 7px 0 20px;
+  color: var(--f1-slate);
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+.jar-summary {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 22px 18px;
+  border: 1px solid var(--f1-grey);
+  border-radius: 8px;
+  background: var(--jar-tint, var(--f1-surface));
+}
+
+.jar-summary strong {
+  display: block;
+  color: var(--f1-charcoal);
+  font-size: 1.25rem;
+}
+
+.jar-summary span {
+  display: block;
+  margin-top: 6px;
+  color: var(--f1-slate);
+  font-size: 0.8125rem;
+}
+
+.jar-summary.empty {
+  background: var(--f1-bg);
+}
+
+.jar-summary.empty span {
+  line-height: 1.5;
+}
+
+.jar-icon {
+  width: 42px;
+  height: 42px;
+  flex: 0 0 auto;
+  border-radius: 50%;
+  color: var(--jar-color);
+  background: var(--jar-icon-tint);
+}
+
+.figures {
+  display: grid;
+  gap: 10px;
+  margin: 18px 0 0;
+}
+
+.figures div {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 0.875rem;
+}
+
+.figures dt {
+  color: var(--f1-slate);
+}
+
+.figures dd {
+  margin: 0;
+  color: var(--f1-charcoal);
+  font-weight: 700;
+}
+
+.remaining {
+  padding-top: 10px;
+  border-top: 1px solid var(--f1-grey);
+}
+
+.over-budget dt,
+.over-budget dd {
+  color: var(--f1-error);
+}
+
+.refresh-note {
+  margin: 20px 0 0;
+  padding: 16px;
+  border-radius: 6px;
+  color: var(--f1-charcoal);
+  background: var(--f1-green-tint);
+  font-size: 0.8125rem;
+  line-height: 1.5;
+}
+
+@media (max-width: 900px) {
+  .summary-panel {
+    min-height: 0;
+  }
+}
